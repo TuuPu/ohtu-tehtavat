@@ -1,0 +1,1 @@
+Tämä on kloonattu lokaali repo, joka träkkää haara1 branchia
