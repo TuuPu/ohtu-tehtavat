@@ -1,5 +1,6 @@
 from entities.user import User
-
+import re
+import sys, pdb
 
 class UserInputError(Exception):
     pass
@@ -36,5 +37,10 @@ class UserService:
     def validate(self, username, password):
         if not username or not password:
             raise UserInputError("Username and password are required")
-
-        # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+        if self._user_repository.find_by_username(username):
+            raise UserInputError("Username already in use")
+        if not re.match("(^.[a-z]{2,})+$", username):
+            raise UserInputError("Username too short or includes a character not allowed")
+        if not re.match("(?=^.{8,})([a-zA-Z]*[^a-zA-Z]+[a-zA-Z]*)", password):
+            raise UserInputError("Password too short or only includes alphabets")
+        #Salasanan on oltava pituudeltaan vähintään 8 merkkiä ja se ei saa koostua pelkästään kirjaimista.
