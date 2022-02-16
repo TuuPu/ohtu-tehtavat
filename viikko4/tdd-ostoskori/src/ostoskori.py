@@ -10,7 +10,7 @@ class Ostoskori:
         if not self.ostokset:
             return 0
         tuotemaara = 0
-        for tuotemaara in self.ostokset:
+        for ostos in self.ostokset:
             tuotemaara += ostos.lukumaara()
 
         return tuotemaara
@@ -23,6 +23,15 @@ class Ostoskori:
         # kertoo korissa olevien ostosten yhteenlasketun hinnan
 
     def lisaa_tuote(self, lisattava: Tuote):
+        loyty = False
+        for i in self.ostokset:
+            if i.tuotteen_nimi() == lisattava.nimi():
+                i.muuta_lukumaaraa(1)
+                loyty = True
+        if loyty is False:
+            self.ostokset.append(Ostos(lisattava))
+
+
         # lisää tuotteen
         pass
 
