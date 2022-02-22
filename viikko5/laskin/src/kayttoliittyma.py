@@ -17,7 +17,7 @@ class Kayttoliittyma:
             Komento.SUMMA: Summa(sovellus, self._lue_syote),
             Komento.EROTUS: Erotus(sovellus, self._lue_syote),
             Komento.NOLLAUS: Nollaa(sovellus, self._lue_syote),
-            #Komento.KUMOA: pass
+            Komento.KUMOA: Kumoa(sovellus, self._lue_syote)
 
         }
 
