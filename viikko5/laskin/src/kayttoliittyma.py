@@ -14,9 +14,9 @@ class Kayttoliittyma:
         self._sovellus = sovellus
         self._root = root
         self._komennot = {
-            Komento.SUMMA: Summa(sovellus, self._luku),
-            Komento.EROTUS: Erotus(sovellus, self._luku),
-            Komento.NOLLAUS: Nollaa(sovellus, self._luku),
+            Komento.SUMMA: Summa(sovellus, self._lue_syote),
+            Komento.EROTUS: Erotus(sovellus, self._lue_syote),
+            Komento.NOLLAUS: Nollaa(sovellus, self._lue_syote),
             #Komento.KUMOA: pass
 
         }
@@ -61,14 +61,13 @@ class Kayttoliittyma:
         self._nollaus_painike.grid(row=2, column=2)
         self._kumoa_painike.grid(row=2, column=3)
 
-    def _luku(self):
+    def _lue_syote(self):
         return self._syote_kentta.get()
 
     def _suorita_komento(self, komento):
+        komento_olio = self._komennot[komento]
+        komento_olio.suorita()
 
-        if komento in self._komennot:
-            komento_kasky = self._komennot[komento]
-            komento_kasky.suorita()
 
 
         self._kumoa_painike["state"] = constants.NORMAL
