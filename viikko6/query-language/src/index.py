@@ -12,9 +12,15 @@ def main():
 
     matcher = (
         query
-            .playsIn("NYR")
-            .hasAtLeast(5, "goals")
-            .hasFewerThan(10, "goals")
+            .oneOf(
+            query.playsIn("PHI")
+                .hasAtLeast(10, "assists")
+                .hasFewerThan(5, "goals")
+                .build(),
+            query.playsIn("EDM")
+                .hasAtLeast(40, "points")
+                .build()
+        )
             .build()
     )
 

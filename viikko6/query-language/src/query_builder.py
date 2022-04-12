@@ -13,6 +13,9 @@ class QueryBuilder:
     def hasFewerThan(self, goals, attr):
         return QueryBuilder(And(self._matcher, HasFewerThan(goals, attr)))
 
+    def oneOf(self, q1, q2):
+        return QueryBuilder(Or(q1, q2))
+
 
     def build(self):
         return self._matcher
